@@ -1,4 +1,4 @@
-package com.example.testingfragmentsusingexoplayer.videoPlayer.view
+package com.example.testingfragmentsusingexoplayer.video
 
 import android.content.Context
 import android.net.Uri
@@ -10,20 +10,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.testingfragmentsusingexoplayer.R
 import com.example.testingfragmentsusingexoplayer.databinding.FragmentExoPlayerBinding
-import com.example.testingfragmentsusingexoplayer.videoPlayer.model.presenter.MainActivityPresenter
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-
-class ExoPlayerFragment() : Fragment() {
+class ExoPlayerFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
     private lateinit var binding: FragmentExoPlayerBinding
-    private lateinit  var mainActivityPresenter: MainActivityPresenter
+    private lateinit var mainActivityPresenter: MainActivityPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +36,10 @@ class ExoPlayerFragment() : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View ?{
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_exo_player, null, false)
-        mainActivityPresenter=MainActivityPresenter()
-        mainActivityPresenter.initializePlayer(binding.exoPlayer,this.context)
+        mainActivityPresenter = MainActivityPresenter()
+        mainActivityPresenter.initializePlayer(binding.exoPlayer, this.context)
         return binding.root
     }
 
@@ -81,13 +79,14 @@ class ExoPlayerFragment() : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-    mainActivityPresenter.releasePlayer()
+        mainActivityPresenter.releasePlayer()
     }
-    fun pausePlayer(){
+
+    fun pausePlayer() {
         mainActivityPresenter.pausePlayer()
     }
-    fun resumePlayer(){
-        mainActivityPresenter.startPlayer()
 
+    fun resumePlayer() {
+        mainActivityPresenter.startPlayer()
     }
 }

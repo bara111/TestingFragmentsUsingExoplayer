@@ -1,9 +1,8 @@
-package com.example.testingfragmentsusingexoplayer.videoPlayer.model.presenter
+package com.example.testingfragmentsusingexoplayer.video
 
 import android.content.Context
 import android.net.Uri
 import com.example.testingfragmentsusingexoplayer.R
-import com.example.testingfragmentsusingexoplayer.video.MainActivityContract
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.LoadControl
@@ -17,16 +16,15 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 
-class MainActivityPresenter : MainActivityContract.Presenter{
+class MainActivityPresenter : MainActivityContract.Presenter {
     private var exoPlayer: SimpleExoPlayer? = null
-    override fun initializePlayer(exoPlayerView: SimpleExoPlayerView,context: Context?) {
+    override fun initializePlayer(exoPlayerView: SimpleExoPlayerView, context: Context?) {
         if (this.exoPlayer == null) {
             val trackSelector: TrackSelector = DefaultTrackSelector()
             val loadControl: LoadControl = DefaultLoadControl()
             exoPlayer = ExoPlayerFactory.newSimpleInstance(context, trackSelector, loadControl)
             exoPlayer?.seekTo(0)
             exoPlayerView.player = exoPlayer
-
             val userAgent =
                 Util.getUserAgent(context, "FragmentApp")
             val mediaSource: MediaSource = ExtractorMediaSource(
@@ -54,6 +52,7 @@ class MainActivityPresenter : MainActivityContract.Presenter{
 
     override fun startPlayer() {
         exoPlayer?.playWhenReady = true
-        exoPlayer?.playbackState    }
+        exoPlayer?.playbackState
+    }
 
 }

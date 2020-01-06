@@ -10,6 +10,7 @@ interface MainActivityContract {
         fun pausePlayer()
         fun startPlayer()
     }
+
     interface View {
         fun resume()
         fun pause()

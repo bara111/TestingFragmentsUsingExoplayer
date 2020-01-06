@@ -8,17 +8,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import com.example.testingfragmentsusingexoplayer.R
 import com.example.testingfragmentsusingexoplayer.databinding.ActivityMainBinding
+import com.example.testingfragmentsusingexoplayer.video.ExoPlayerFragment
 import com.example.testingfragmentsusingexoplayer.video.MainActivityContract
 
 
-class MainActivity : AppCompatActivity(), MainActivityContract.View, ExoPlayerFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), MainActivityContract.View,
+    ExoPlayerFragment.OnFragmentInteractionListener {
     private lateinit var binding: ActivityMainBinding
-    private val INTENT:String="INTENT"
-    private lateinit var exoPlayerFragment:ExoPlayerFragment
+    private val INTENT: String = "INTENT"
+    private lateinit var exoPlayerFragment: ExoPlayerFragment
     private lateinit var fragmentManager: FragmentManager
-
-
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View, ExoPlayerFr
         )
         binding.lifecycleOwner = this
         if (savedInstanceState == null) {
-             exoPlayerFragment = ExoPlayerFragment()
+            exoPlayerFragment = ExoPlayerFragment()
             fragmentManager = supportFragmentManager
             fragmentManager.beginTransaction().add(R.id.exp_player_fragment, exoPlayerFragment)
                 .commit()
@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View, ExoPlayerFr
             fragmentManager.beginTransaction().add(R.id.exp_player_fragment, exoPlayerFragment)
                 .commit()
         }
-        binding.play.setOnClickListener{
+        binding.play.setOnClickListener {
             resume()
         }
-        binding.stop.setOnClickListener{
+        binding.stop.setOnClickListener {
             pause()
         }
     }
