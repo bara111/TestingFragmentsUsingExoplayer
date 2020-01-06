@@ -12,13 +12,12 @@ import com.example.testingfragmentsusingexoplayer.video.ExoPlayerFragment
 import com.example.testingfragmentsusingexoplayer.video.MainActivityContract
 
 
-class MainActivity : AppCompatActivity(), MainActivityContract.View,
+class MainActivity : AppCompatActivity(),
     ExoPlayerFragment.OnFragmentInteractionListener {
     private lateinit var binding: ActivityMainBinding
-    private val INTENT: String = "INTENT"
     private lateinit var exoPlayerFragment: ExoPlayerFragment
     private lateinit var fragmentManager: FragmentManager
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(
@@ -38,28 +37,19 @@ class MainActivity : AppCompatActivity(), MainActivityContract.View,
                 .commit()
         }
         binding.play.setOnClickListener {
-            resume()
+            exoPlayerFragment.resumePlayer()
         }
         binding.stop.setOnClickListener {
-            pause()
+            exoPlayerFragment.pausePlayer()
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        outState.putParcelable(INTENT, intent)
 
-    }
 
-    override fun resume() {
-        exoPlayerFragment.resumePlayer()
-    }
 
-    override fun pause() {
-        exoPlayerFragment.pausePlayer()
-
-    }
 
     override fun onFragmentInteraction(uri: Uri) {
     }
+
+
 }

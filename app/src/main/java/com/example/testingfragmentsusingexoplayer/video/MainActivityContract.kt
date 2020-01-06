@@ -12,7 +12,6 @@ interface MainActivityContract {
     }
 
     interface View {
-        fun resume()
-        fun pause()
+        fun updateUi(status:String)
     }
 }

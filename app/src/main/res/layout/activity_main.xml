@@ -49,6 +49,21 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1">
 
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/initial_state" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1">
+
                 <Button
                     android:id="@+id/stop"
                     android:layout_width="wrap_content"

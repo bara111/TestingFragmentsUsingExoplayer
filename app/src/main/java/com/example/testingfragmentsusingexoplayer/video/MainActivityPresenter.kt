@@ -16,8 +16,13 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 
-class MainActivityPresenter : MainActivityContract.Presenter {
+class MainActivityPresenter(view: MainActivityContract.View) : MainActivityContract.Presenter {
     private var exoPlayer: SimpleExoPlayer? = null
+    private var status:String=""
+
+    private var view: MainActivityContract.View = view
+
+
     override fun initializePlayer(exoPlayerView: SimpleExoPlayerView, context: Context?) {
         if (this.exoPlayer == null) {
             val trackSelector: TrackSelector = DefaultTrackSelector()
@@ -48,11 +53,19 @@ class MainActivityPresenter : MainActivityContract.Presenter {
     override fun pausePlayer() {
         exoPlayer?.playWhenReady = false
         exoPlayer?.playbackState
+        status="pause"
+        view.updateUi(status)
+
+
     }
 
     override fun startPlayer() {
         exoPlayer?.playWhenReady = true
         exoPlayer?.playbackState
+        status="start"
+        view.updateUi(status)
+
+
     }
 
 }

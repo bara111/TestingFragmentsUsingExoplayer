@@ -7,15 +7,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.example.testingfragmentsusingexoplayer.R
+import com.example.testingfragmentsusingexoplayer.databinding.ActivityMainBinding
 import com.example.testingfragmentsusingexoplayer.databinding.FragmentExoPlayerBinding
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class ExoPlayerFragment : Fragment() {
+class ExoPlayerFragment : Fragment(),MainActivityContract.View {
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
@@ -30,16 +33,18 @@ class ExoPlayerFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
     }
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_exo_player, null, false)
-        mainActivityPresenter = MainActivityPresenter()
+        mainActivityPresenter = MainActivityPresenter(this)
         mainActivityPresenter.initializePlayer(binding.exoPlayer, this.context)
+
+
+
+
         return binding.root
     }
 
@@ -84,9 +89,14 @@ class ExoPlayerFragment : Fragment() {
 
     fun pausePlayer() {
         mainActivityPresenter.pausePlayer()
+
     }
 
     fun resumePlayer() {
         mainActivityPresenter.startPlayer()
+    }
+
+    override fun updateUi(status: String) {
+requireActivity().findViewById<TextView>(R.id.status).text=status
     }
 }
