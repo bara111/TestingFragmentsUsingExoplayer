@@ -1,8 +1,9 @@
-package com.example.testingfragmentsusingexoplayer.presenter
+package com.example.testingfragmentsusingexoplayer.videoPlayer.model.presenter
 
 import android.content.Context
 import android.net.Uri
 import com.example.testingfragmentsusingexoplayer.R
+import com.example.testingfragmentsusingexoplayer.video.MainActivityContract
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.LoadControl
@@ -16,10 +17,8 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 
-class MainActivityPresenter :MVPpresenter{
+class MainActivityPresenter : MainActivityContract.Presenter{
     private var exoPlayer: SimpleExoPlayer? = null
-
-
     override fun initializePlayer(exoPlayerView: SimpleExoPlayerView,context: Context?) {
         if (this.exoPlayer == null) {
             val trackSelector: TrackSelector = DefaultTrackSelector()
