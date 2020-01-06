@@ -83,4 +83,11 @@ class ExoPlayerFragment() : Fragment() {
         super.onDestroy()
     mainActivityPresenter.releasePlayer()
     }
+    fun pausePlayer(){
+        mainActivityPresenter.pausePlayer()
+    }
+    fun resumePlayer(){
+        mainActivityPresenter.startPlayer()
+
+    }
 }

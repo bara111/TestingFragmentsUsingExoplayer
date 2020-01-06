@@ -36,6 +36,12 @@ class MainActivity : AppCompatActivity(), MVPview, ExoPlayerFragment.OnFragmentI
             fragmentManager.beginTransaction().add(R.id.exp_player_fragment, exoPlayerFragment!!)
                 .commit()
         }
+        binding.play.setOnClickListener{
+            resume()
+        }
+        binding.stop.setOnClickListener{
+            pause()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
@@ -44,11 +50,12 @@ class MainActivity : AppCompatActivity(), MVPview, ExoPlayerFragment.OnFragmentI
 
     }
 
-    override fun start() {
-
+    override fun resume() {
+        exoPlayerFragment.resumePlayer()
     }
 
     override fun pause() {
+        exoPlayerFragment.pausePlayer()
 
     }
 

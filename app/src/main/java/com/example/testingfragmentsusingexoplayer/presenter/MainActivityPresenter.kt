@@ -48,4 +48,13 @@ class MainActivityPresenter :MVPpresenter{
         }
     }
 
+    override fun pausePlayer() {
+        exoPlayer?.playWhenReady = false
+        exoPlayer?.playbackState
+    }
+
+    override fun startPlayer() {
+        exoPlayer?.playWhenReady = true
+        exoPlayer?.playbackState    }
+
 }
